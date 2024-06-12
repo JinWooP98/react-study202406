@@ -1,15 +1,13 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from "react";
-import Hello from "./components/Hello";
-import Bye from "./components/Bye";
-import Greet from "./components/Greet";
+import ExpenseItem from "./components/expenses/ExpenseItem";
 
-function App() {
+const App = () => {
 
     // jsx 문법
     // const $h2 = React.createElement('h2', null, '햄토리');
-    const $h2 = <h2>햄토리</h2>
+    // const $h2 = <h2>햄토리</h2>
     // jsx 규칙
     // 1. return 안에있는 태그는 반드시 하나의 태그로 묶여야 함.
     // 2. 빈 태그(닫는 태그가 없는)는 반드시 /> 로 마감
@@ -18,15 +16,10 @@ function App() {
     // 5. 의미없는 부모는 <React.Fragment>로 묶어준다.
     // 6. 변수값이나 함수를 출력할 때는 {}로 감싸면 된다.
 
-    const hello = '안녕안녕?';
   return (
         <>
-            <Bye></Bye>
-            <Hello />
-            <Bye />
-            <Greet />
+            <ExpenseItem />
         </>
-
   );
 }
 
