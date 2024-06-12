@@ -1,6 +1,7 @@
 import React from 'react';
 // css를 적용하기 위해선 import에 경로만 입력하면 된다.
 import './ExpenseItem.css'
+import ExpenseDate from "./ExpenseDate";
 
 const ExpenseItem = ({title, price: exprice, date}) => {
 
@@ -32,7 +33,7 @@ const ExpenseItem = ({title, price: exprice, date}) => {
     return (
         <>
             <div className="expense-item">
-                <div>{makeFormattedDate()}</div>
+                <ExpenseDate exDate={date}/>
                 <div className="expense-item__description">
                     <h2>{title}</h2>
                     <div className="expense-item__price">{formattedPrice}원</div>

@@ -1,4 +1,3 @@
-
 import './App.css';
 import React from "react";
 import ExpenseItem from "./components/expenses/ExpenseItem";
@@ -17,13 +16,44 @@ const App = () => {
     // 6. 변수값이나 함수를 출력할 때는 {}로 감싸면 된다.
     // 7. 변수값을 넣을때 문자열은 {} 생략 가능 다른 타입은 반드시 써주어야 한다.
 
-  return (
+    // 서버에서 지출항목 JSON 배열을 응답받았다고 가정
+    const expenses = [
+        {
+            title:'덮밥',
+            price: 8000,
+            date: new Date(2024, 6 - 1, 3)
+        },
+        {
+            title:'돈까스',
+            price: 9500,
+            date: new Date(2024, 6 - 1, 7)
+        },
+        {
+            title:'맥주',
+            price: 10500,
+            date: new Date(2024, 6 - 1, 12)
+        }
+    ]
+
+    return (
         <>
-            <ExpenseItem title="덮밥" price={8000} date={new Date(2024, 6, 3)}/>
-            <ExpenseItem title="돈까스" price={9500} date={new Date(2024, 6, 7)}/>
-            <ExpenseItem title="맥주" price={10500} date={new Date(2024, 6, 12)}/>
+            <ExpenseItem
+                title={expenses[0].title}
+                price={expenses[0].price}
+                date={expenses[0].date}
+            />
+            <ExpenseItem
+                title={expenses[1].title}
+                price={expenses[1].price}
+                date={expenses[1].date}
+            />
+            <ExpenseItem
+                title={expenses[2].title}
+                price={expenses[2].price}
+                date={expenses[2].date}
+            />
         </>
-  );
+    );
 }
 
 export default App;
