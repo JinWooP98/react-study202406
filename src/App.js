@@ -15,10 +15,13 @@ const App = () => {
     // 4. label 태그의 for 속성은 htmlFor으로 표기
     // 5. 의미없는 부모는 <React.Fragment>로 묶어준다.
     // 6. 변수값이나 함수를 출력할 때는 {}로 감싸면 된다.
+    // 7. 변수값을 넣을때 문자열은 {} 생략 가능 다른 타입은 반드시 써주어야 한다.
 
   return (
         <>
-            <ExpenseItem />
+            <ExpenseItem title="덮밥" price={8000} date={new Date(2024, 6, 3)}/>
+            <ExpenseItem title="돈까스" price={9500} date={new Date(2024, 6, 7)}/>
+            <ExpenseItem title="맥주" price={10500} date={new Date(2024, 6, 12)}/>
         </>
   );
 }
