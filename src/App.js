@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import ExpenseList from "./components/expenses/ExpenseList";
-import Greet from "./components/Greet";
+import NewExpense from "./components/new-expense/NewExpense";
 
 const App = () => {
 
@@ -38,6 +38,7 @@ const App = () => {
 
     return (
         <>
+            <NewExpense/>
             <ExpenseList expenses={expenses} />
         </>
     );
