@@ -3,11 +3,11 @@ import './ExpenseFilter.css';
 
 const ExpenseFilter = ({onFilter}) => {
 
-    const [selectedValue, setSelect] = useState('');
+
 
     const selectedFilter = e => {
-        setSelect(e.target.value);
-        onFilter(e.target.value);
+        const filteredValue = e.target.value;
+        onFilter(filteredValue);
     }
 
     return (

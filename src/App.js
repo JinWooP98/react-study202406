@@ -23,7 +23,7 @@ const App = () => {
         {
             title:'덮밥',
             price: 8000,
-            date: new Date(2024, 6 - 1, 3)
+            date: new Date(2021, 6 - 1, 3)
         },
         {
             title:'돈까스',
@@ -34,6 +34,16 @@ const App = () => {
             title:'맥주',
             price: 10500,
             date: new Date(2024, 6 - 1, 12)
+        },
+        {
+            title:'짜장면',
+            price:10500,
+            date: new Date(2022,3-1,8)
+        },
+        {
+            title:'파파존스피자',
+            price:35000,
+            date: new Date(2020,9-1,4)
         }
     ]
 
