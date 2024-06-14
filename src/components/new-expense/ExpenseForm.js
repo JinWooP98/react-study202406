@@ -40,7 +40,7 @@ const ExpenseForm = ({onAdd, isAdd}) => {
         // setUserInput(userInput.price = e.target.value);
         setUserInput({
             ...userInput,
-            price: e.target.value
+            price: +e.target.value
 
         });
     }

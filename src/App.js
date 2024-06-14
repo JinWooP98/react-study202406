@@ -28,7 +28,7 @@ const App = () => {
         {
             title:'돈까스',
             price: 9500,
-            date: new Date(2024, 6 - 1, 7)
+            date: new Date(2024, 5 - 1, 7)
         },
         {
             title:'맥주',
