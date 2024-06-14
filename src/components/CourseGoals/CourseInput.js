@@ -1,15 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './CourseInput.css';
 import Button from '../UI/Button';
 
-const CourseInput = () => {
+const CourseInput = ({addGoal}) => {
+
+
+
+    const [enteredText, setEnteredText] = useState('');
+
+    const addUserGoal = e => {
+        e.preventDefault();
+        const newGaolObject = {
+            id:Math.random().toString(),
+            text: enteredText
+        };
+        console.log(newGaolObject);
+
+        addGoal(newGaolObject);
+
+        setEnteredText('');
+    }
+
+
+
     return (
-        <form>
+        <form onSubmit={addUserGoal}>
             <div className="form-control">
                 <label>나의 목표</label>
-                <input type="text" />
+                <input value={enteredText} type="text" onChange={e => setEnteredText(e.target.value)} />
             </div>
-            <Button type="submit">목표 추가하기</Button>
+            <Button type="submit" >목표 추가하기</Button>
         </form>
     );
 };

@@ -4,27 +4,41 @@ import CourseInput from './components/CourseGoals/CourseInput';
 import CourseList from './components/CourseGoals/CourseList';
 import './App.css';
 
-// 기본 더미 데이터
-const DUMMY_DATA = [
-    {
-        id: 'g1',
-        text: '리액트 컴포넌트 스타일링 마스터하기'
-    },
-    {
-        id: 'g2',
-        text: 'UI/UX 프로그래밍 마스터하기'
-    }
-];
+/*
+    입력하고 추가하기 버튼 누르면 아래 list 가 추가되게
+
+    목표바를 클릭 or 더블클릭하면 삭제되도록
+ */
+
+
+
 
 
 const App = () => {
 
+    // 기본 더미 데이터
+    const DUMMY_DATA = [
+        {
+            id: 'g1',
+            text: '리액트 컴포넌트 스타일링 마스터하기'
+        },
+        {
+            id: 'g2',
+            text: 'UI/UX 프로그래밍 마스터하기'
+        }
+    ];
+
     const [goals, setGoals] = useState(DUMMY_DATA);
+
+    // CourseInput에게 전달할 함수
+    const addGoalHandler = (goalObject) => {
+      setGoals([...goals, goalObject]);
+    };
 
     return (
         <div>
             <section id="goal-form">
-                <CourseInput />
+                <CourseInput addGoal={addGoalHandler}/>
             </section>
             <section id="goals">
                 <CourseList items={goals}/>
