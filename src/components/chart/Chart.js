@@ -1,22 +1,15 @@
-import React from 'react';
+import React from "react";
 import ChartBar from "./ChartBar";
-import './Chart.css'
+import "./Chart.css";
 
-const Chart = () => {
+const Chart = ({dataPoints}) => {
+    console.log(dataPoints);
     return (
-        <div className={'chart'}>
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
-            <ChartBar />
+        <div className="chart">
+            {
+                dataPoints
+                    .map(dp => <ChartBar key={dp.label} label={dp.label}></ChartBar>)
+            }
         </div>
     );
 };
