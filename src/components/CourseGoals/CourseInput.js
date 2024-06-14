@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './CourseInput.css';
 import Button from '../UI/Button';
 
-const CourseInput = ({addGoal}) => {
+const CourseInput = ({onAddGoal}) => {
 
 
 
@@ -16,7 +16,7 @@ const CourseInput = ({addGoal}) => {
         };
         console.log(newGaolObject);
 
-        addGoal(newGaolObject);
+        onAddGoal(newGaolObject);
 
         setEnteredText('');
     }
