@@ -23,11 +23,14 @@ const ExpenseList = ({ expenses }) => {
             <ExpenseFilter onFilter={onFilterChange}/>
             {expenses
                 .filter(ex => ex.date.getFullYear().toString() === filteredYear)
-                .map(({title, price, date}) => (<ExpenseItem
+                .map(({title, price, date}) => (
+                    <ExpenseItem
                     key={Math.random().toString()}
                     title={title}
                     price={price}
-                    date={date} />))}
+                    date={date}
+                    />
+                ))}
         </div>
     );
 };
