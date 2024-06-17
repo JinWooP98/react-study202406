@@ -1,8 +1,8 @@
 
-import React, { useState } from 'react';
-import CourseInput from './components/CourseGoals/CourseInput';
-import CourseList from './components/CourseGoals/CourseList';
+import React, { useState, Fragment } from 'react';
 import './App.css';
+import AddUser from "./components/Users/AddUser";
+import UserList from "./components/Users/UserList";
 
 /*
     입력하고 추가하기 버튼 누르면 아래 list 가 추가되게
@@ -43,14 +43,10 @@ const App = () => {
     }
 
     return (
-        <div>
-            <section id="goal-form">
-                <CourseInput addGoal={onAddGoalHandler}/>
-            </section>
-            <section id="goals">
-                <CourseList items={goals} onDeleteGoal={onDeleteGoalHandler}/>
-            </section>
-        </div>
+        <>
+            <AddUser />
+            <UserList />
+        </>
     );
 };
 
