@@ -1,5 +1,5 @@
 import React from 'react';
-import './CourseItem.css'
+import styles from'./CourseItem.module.css'
 
 const CourseItem = ({item, onDeleteGoal}) => {
 
@@ -9,7 +9,11 @@ const CourseItem = ({item, onDeleteGoal}) => {
     }
 
     return (
-        <li className={'goal-item'} onClick={deleteHandler} id={item.id}>{item.text}</li>
+        <li
+            className={styles['goal-item']}
+            onClick={deleteHandler}
+            id={item.id}>{item.text}
+        </li>
     );
 };
 
