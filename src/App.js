@@ -1,5 +1,5 @@
 
-import React, { useState, Fragment } from 'react';
+import React, {useState, useRef} from 'react';
 import './App.css';
 import AddUser from "./components/Users/AddUsers";
 import UserList from "./components/Users/UserList";
@@ -17,11 +17,19 @@ import ErrorModal from "./components/UI/Modal/ErrorModal";
 
 const App = () => {
 
+
     // 회원들이 저장될 배열
     const [userList, setUserList] = useState([]);
 
+    // 참조값을 기억을 해놨다가 마치 지역변수처럼 사용을 가능하게 함
+    const count = useRef(1);
+
+
     const addUserHandler = user => {
 
+        console.log('count: ', count)
+        count.current++;
+        console.log('count: ', count.current);
         console.log(user);
         setUserList(prev => [...prev, {...user, id: Math.random().toString()}]);
     };
