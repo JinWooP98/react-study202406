@@ -23,13 +23,15 @@ const App = () => {
 
     // 참조값을 기억을 해놨다가 마치 지역변수처럼 사용을 가능하게 함
     const count = useRef(1);
+    console.log('count: ', count)
 
 
     const addUserHandler = user => {
 
-        console.log('count: ', count)
+
         count.current++;
         console.log('count: ', count.current);
+
         console.log(user);
         setUserList(prev => [...prev, {...user, id: Math.random().toString()}]);
     };
