@@ -1,8 +1,9 @@
 
 import React, { useState, Fragment } from 'react';
 import './App.css';
-import AddUser from "./components/Users/AddUser";
+import AddUser from "./components/Users/AddUsers";
 import UserList from "./components/Users/UserList";
+import ErrorModal from "./components/UI/Modal/ErrorModal";
 
 /*
     입력하고 추가하기 버튼 누르면 아래 list 가 추가되게
@@ -15,6 +16,15 @@ import UserList from "./components/Users/UserList";
 
 
 const App = () => {
+
+    // 회원들이 저장될 배열
+    const [userList, setUserList] = useState([]);
+
+    const addUserHandler = user => {
+
+        console.log(user);
+        setUserList(prev => [...prev, {...user, id: Math.random().toString()}]);
+    };
 
     // 기본 더미 데이터
     const DUMMY_DATA = [
@@ -44,8 +54,8 @@ const App = () => {
 
     return (
         <>
-            <AddUser />
-            <UserList />
+            <AddUser onAddUser={addUserHandler}/>
+            <UserList users={userList}/>
         </>
     );
 };
