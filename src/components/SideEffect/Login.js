@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import Card from "../UI/Card";
 import styles from "./Login.module.css";
 import Button from "../UI/Button";
 
 const Login = ({ onLogin }) => {
+
+    console.log('렌더링 수행');
 
     // 사용자가 입력한 이메일을 상태관리
     const [enteredEmail, setEnteredEmail] = useState("");
@@ -21,17 +23,11 @@ const Login = ({ onLogin }) => {
     const emailChangeHandler = (e) => {
         setEnteredEmail(e.target.value);
 
-        setFormIsValid(
-            e.target.value.includes("@") && enteredPassword.trim().length > 6
-        );
     };
 
     const passwordChangeHandler = (e) => {
         setEnteredPassword(e.target.value);
 
-        setFormIsValid(
-            e.target.value.trim().length > 6 && enteredEmail.includes("@")
-        );
     };
 
     const validateEmailHandler = () => {
@@ -48,6 +44,17 @@ const Login = ({ onLogin }) => {
         // App.js에서 받은 로그인핸들러 호출
         onLogin(enteredEmail, enteredPassword);
     };
+
+    // useEffect는 한번만 호출됨
+    // 최초 1번만 실행되어야 하면 배열을 빈배열을
+    // 특정 상태 혹은 prop에 의존하면 그 prop를 배열에 넣어주어야 한다.
+    // 계속 실행되게 하려면 배열을 빼주면 된다.
+    useEffect(() => {
+        console.log('useEffect call in Login.js')
+        setFormIsValid(
+            enteredEmail.includes("@") && enteredPassword.trim().length > 6
+        );
+    }, [enteredEmail, enteredPassword]);
 
     return (
         <Card className={styles.login}>
