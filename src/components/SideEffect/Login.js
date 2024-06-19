@@ -157,7 +157,7 @@ const Login = ({ onLogin }) => {
             <form onSubmit={submitHandler}>
                 <div
                     className={`${styles.control} ${
-                       emailIsValid ? styles.invalid : ""
+                       !emailIsValid ? styles.invalid : ''
                     }`}
                 >
                     <label htmlFor="email">E-Mail</label>
@@ -171,7 +171,7 @@ const Login = ({ onLogin }) => {
                 </div>
                 <div
                     className={`${styles.control} ${
-                        !passwordIsValid ? styles.invalid : ""
+                        !passwordIsValid ? styles.invalid : ''
                     }`}
                 >
                     <label htmlFor="password">Password</label>
