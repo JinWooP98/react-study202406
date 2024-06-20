@@ -1,7 +1,7 @@
 import React from 'react';
 import './scss/TodoHeader.scss';
 
-const TodoHeader = ({todoList, restTodo}) => {
+const TodoHeader = ({restTodo}) => {
 
     const nowDate = new Date();
 

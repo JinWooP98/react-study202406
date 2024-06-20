@@ -36,11 +36,23 @@ const TodoTemplate = () => {
         setTodoList(todoList.filter(todo => todo.id !== id));
     };
 
+    const checkTodo = id => {
+        // const copyTodoList = [...todoList];
+        //
+        // const foundTodo = copyTodoList.find(todo => todo.id === id);
+        // foundTodo.done = !foundTodo.done;
+        // setTodoList(copyTodoList);
+
+        // 아이디가 같은 todo만 done을 뒤집고, 일치하지 않으면 그대로 매핑하는 것
+        setTodoList(todoList.map(todo => todo.id === id ? {...todo, done: !todo.done} : todo));
+    };
+
+    const countRestTodo = todoList.filter(todo => todo.done === false).length
 
     return (
         <div className='TodoTemplate'>
-            <TodoHeader/>
-            <TodoMain todos={todoList} onRemove={removeTodo}/>
+            <TodoHeader restTodo={countRestTodo}/>
+            <TodoMain todos={todoList} onRemove={removeTodo} onCheck={checkTodo}/>
             <TodoInput onAdd={addTodo}/>
         </div>
     );
