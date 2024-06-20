@@ -27,6 +27,9 @@ const TimerChallenge = ({title, targetTime}) => {
     const timerIsActive = timeRemaining > 0 && timeRemaining < targetTime * 1000;
 
     const startHandler = e => {
+
+        // setTimeRemaining(targetTime * 1000);
+
         timer.current =
             setInterval(() => {
                 setTimeRemaining(prev => prev - 10);
@@ -51,9 +54,12 @@ const TimerChallenge = ({title, targetTime}) => {
         dialog.current.showModal();
     }
 
+    // 남은 시간 리셋 함수
+    const resetHandler = () => setTimeRemaining(targetTime * 1000)
+
     return (
         <>
-        <ResultModal ref={dialog} targetTime={targetTime} result={"lost"} remainingTime={timeRemaining/1000}/>
+        <ResultModal ref={dialog} targetTime={targetTime} result={"lost"} remainingTime={timeRemaining} onReset={resetHandler}/>
             <section className="challenge">
                 <h2>{title}</h2>
                 <p className="challenge-time">
