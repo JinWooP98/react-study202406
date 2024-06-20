@@ -1,4 +1,5 @@
 import React, {useRef, useState} from 'react';
+import ResultModal from "./ResultModal";
 
 // 여기에 timer을 선언하면 app.js에 있는 모든 TimerChallenge가 이 한가지의 timer을 사용한다.
 // let timer;
@@ -45,21 +46,23 @@ const TimerChallenge = ({title, targetTime}) => {
     }
 
     return (
-        <section className="challenge">
-            <h2>{title}</h2>
-            {timerExpired && <p>You lost!</p>}
-            <p className="challenge-time">
-                {targetTime} second{targetTime > 1 ? 's' : ''}
-            </p>
-            <p>
-                <button onClick={timerStarted ? stopHandler : startHandler}>
-                    {timerStarted ? 'Stop' : 'Start'} Challenge
-                </button>
-            </p>
-            <p className={timerStarted ? 'active' : undefined}>
-                {timerStarted ? 'Time is running...' : 'Timer inactive'}
-            </p>
-        </section>
+        <>
+        {<ResultModal targetTime={targetTime} result={"lost"}/>}
+            <section className="challenge">
+                <h2>{title}</h2>
+                <p className="challenge-time">
+                    {targetTime} second{targetTime > 1 ? 's' : ''}
+                </p>
+                <p>
+                    <button onClick={timerStarted ? stopHandler : startHandler}>
+                        {timerStarted ? 'Stop' : 'Start'} Challenge
+                    </button>
+                </p>
+                <p className={timerStarted ? 'active' : undefined}>
+                    {timerStarted ? 'Time is running...' : 'Timer inactive'}
+                </p>
+            </section>
+        </>
     );
 };
 
