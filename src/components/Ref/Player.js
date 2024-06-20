@@ -1,4 +1,5 @@
 import React, {useRef, useState} from "react";
+import Input from "./Input";
 
 const Player = () => {
 
@@ -17,7 +18,7 @@ const Player = () => {
             <h2>Welcome {enteredName}!</h2>
             <form>
                 <p>
-                    <input type="text" ref={$nameInput}/>
+                    <Input type="text" ref={$nameInput}/>
                     <button onClick={nameChangeHandler}>Set Name</button>
                 </p>
             </form>
