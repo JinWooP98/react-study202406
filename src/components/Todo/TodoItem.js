@@ -3,33 +3,18 @@ import {MdDelete, MdDone} from "react-icons/md";
 
 import './scss/TodoItem.scss';
 
-const TodoItem = ({td, deleteTodo, checkTodo, key}) => {
+const TodoItem = ({ item }) => {
 
-    const [isFinish,setIsFinish] = useState(false);
-
-    const checkTodoList = () => {
-        if(isFinish) {
-            setIsFinish(false);
-            checkTodo(false);
-        } else {
-            setIsFinish(true);
-            checkTodo(true);
-        }
-    }
-
-    const deleteTodoList = () => {
-        deleteTodo(td, isFinish);
-    }
-
+    const { title, done } = item;
 
     return (
         <>
             <li className='todo-list-item' >
-                <div className='check-circle' onClick={checkTodoList}>
-                    <MdDone/>
+                <div className='check-circle' >
+                    {done && <MdDone/>}
                 </div>
-                <span className={isFinish ? 'text finish' : 'text'}>{td}</span>
-                <div className='remove' onClick={deleteTodoList}>
+                <span className='text'>{title}</span>
+                <div className='remove'>
                     <MdDelete/>
                 </div>
             </li>

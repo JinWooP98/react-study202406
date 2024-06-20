@@ -3,17 +3,20 @@ import React from 'react';
 import './scss/TodoMain.scss';
 import TodoItem from "./TodoItem";
 
-const TodoMain = ({todoList, deleteTodo, checkTodo}) => {
+const DUMMY_TODOS = [
+    {id: 1, title: '리액트 공부', done: true},
+    {id: 2, title: '점심 먹기', done: false},
+    {id: 3, title: '프로젝트', done: false}
+]
 
-    const list = [];
+const TodoMain = () => {
 
-    for (const todoListElement of todoList) {
-        list.push(<TodoItem key={Math.random()} td={todoListElement} deleteTodo={deleteTodo} checkTodo={checkTodo}/>)
-    }
 
     return (
         <ul className='todo-list'>
-            {list}
+            {
+                DUMMY_TODOS.map(todo => <TodoItem key={todo.id} item={todo}/>)
+            }
         </ul>
     );
 };
