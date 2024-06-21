@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AvailableMeals.model.scss'
+import styles from './AvailableMeals.module.scss'
 import MealItem from './MealItem/MealItem';
 import Card from '../../UI/Card';
 
