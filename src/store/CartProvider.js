@@ -19,7 +19,7 @@ const cartReducer = (state, action) => {
         return null; // 새로운 상태
     }
     return defaultState; // 새로운 상태
-}
+};
 
 const CartProvider = ({children}) => {
 

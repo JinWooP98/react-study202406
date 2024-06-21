@@ -5,7 +5,7 @@ import styles from './Header.module.scss';
 import foodImage from '../../../assets/img/meals.jpg';
 import HeaderCartButton from "./HeaderCartButton";
 
-const Header = () => {
+const Header = ({onShowCart}) => {
 
     // 스네이크캐이스는 반드시 카멜캐이스로 바꿔주어야 한다.
     const {header, 'main-image' : mainImage } = styles;
@@ -14,7 +14,7 @@ const Header = () => {
         <>
             <header className={header}>
                 <h1>ReactMeals</h1>
-                <HeaderCartButton />
+                <HeaderCartButton onShow={onShowCart}/>
             </header>
             <div className={mainImage}>
                 <img src={foodImage} alt={"음식 사진"}/>
