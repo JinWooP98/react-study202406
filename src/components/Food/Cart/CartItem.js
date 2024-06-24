@@ -7,7 +7,7 @@ const CartItem = ({ cart }) => {
 
     const { name, price, amount } = cart;
 
-    const { addItem } = useContext(CartContext);
+    const { addItem, removeItem } = useContext(CartContext);
 
     const {
         'cart-item': cartItem,
@@ -29,6 +29,14 @@ const CartItem = ({ cart }) => {
         addItem(item);
     }
 
+    const cartRemoveHandler = e => {
+
+        // 장바구니에 보낼 객체
+        const id = cart.id
+
+        removeItem(id);
+    }
+
     return (
         <li className={cartItem}>
             <div>
@@ -39,7 +47,7 @@ const CartItem = ({ cart }) => {
                 </div>
             </div>
             <div className={actions}>
-                <button>−</button>
+                <button onClick={cartRemoveHandler}>−</button>
                 <button onClick={cartAddHandler}>+</button>
             </div>
         </li>
