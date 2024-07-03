@@ -3,12 +3,12 @@ import {useParams} from "react-router-dom";
 
 const EventDetail = () => {
 
-    const params = useParams();
+    const {eventId: id} = useParams();
 
     return (
         <>
             <h1>EventDetail Page</h1>
-            <p>Event ID: {params.eventId}</p>
+            <p>Event ID: {id}</p>
         </>
     );
 };
