@@ -1,10 +1,11 @@
 import React from "react";
 import styles from './EventItem.module.scss';
+import {Link} from "react-router-dom";
 
 const EventItem = ({ event }) => {
 
     const {
-        title, desc:description, 'img-url': image, 'start-date':date
+        title, desc:description, 'img-url': image, 'start-date':date, 'event-id':id,
     } = event
 
     return (
@@ -14,7 +15,7 @@ const EventItem = ({ event }) => {
             <time>{date}</time>
             <p>{description}</p>
             <menu className={styles.actions}>
-                <a href="#">Edit</a>
+                <Link to={`/events/${id}/edit`}>Edit</Link>
                 <button>Delete</button>
             </menu>
         </article>
