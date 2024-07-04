@@ -1,5 +1,5 @@
 import React from 'react';
-import {useLoaderData} from 'react-router-dom';
+import {useLoaderData, json} from 'react-router-dom';
 import EventList from "../components/EventList";
 
 
@@ -30,8 +30,8 @@ export const loader = async () => {
     // const jsonData = await response.json();
     if(!response.ok) {
         const errorText = await response.text();
-        throw new Response(
-            JSON.stringify({message: errorText}),
+        throw json/*new Response*/(
+            ({message: errorText}),
             {
               status: response.status
             },
