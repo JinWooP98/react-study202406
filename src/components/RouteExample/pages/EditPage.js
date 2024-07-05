@@ -8,7 +8,7 @@ const EditPage = () => {
 
     return (
         <>
-            <EventForm method={'patch'} event={ev}/>
+            <EventForm method={'PATCH'} event={ev}/>
         </>
     );
 };
