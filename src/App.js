@@ -4,9 +4,9 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import RootLayout from "./components/RouteExample/layout/RootLayout";
 import ErrorPage from "./components/RouteExample/pages/ErrorPage";
 import Events, {loader as eventListLoader} from "./components/RouteExample/pages/Events";
-import EventDetail, {loader as eventDetailLoader} from "./components/RouteExample/pages/EventDetail";
+import EventDetail, {loader as eventDetailLoader, action as deleteAciton} from "./components/RouteExample/pages/EventDetail";
 import EventLayout from "./components/RouteExample/layout/EventLayout";
-import NewEvent from "./components/RouteExample/pages/NewEvent";
+import NewEvent, {action as saveAction,}from "./components/RouteExample/pages/NewEvent";
 import EditPage from "./components/RouteExample/pages/EditPage";
 
 const router = createBrowserRouter([
@@ -35,11 +35,15 @@ const router = createBrowserRouter([
                       loader: eventDetailLoader,
                       id: 'event-detail', // loader에 id 부여
                       children: [
-                          {index:true, element: <EventDetail />},
+                          {index:true, element: <EventDetail />, action: deleteAciton},
                           {path: 'edit', element: <EditPage />},
                       ]
                   },
-                  {path: 'new', element: <NewEvent />},
+                  {
+                      path: 'new',
+                      element: <NewEvent />,
+                      action: saveAction
+                  },
               ]
           },
 
