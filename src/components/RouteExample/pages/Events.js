@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import EventList from "../components/EventList";
 import EventSkeleton from "../components/EventSkeleton";
 
@@ -10,6 +10,9 @@ const Events = () => {
 
     // loader가 리턴한 데이터 받아오기
     // const eventList = useLoaderData();
+
+    // 이벤트 목록 아래 박스 참조
+    const skeletonBoxRef = useRef();
 
     // 서버에서 가져온 이벤트 목록
     const [events, setEvents] = useState([]);
@@ -56,40 +59,77 @@ const Events = () => {
 
     }
 
-    // 초기 이벤트 1페이지 목록 가져오기
+    // 무한 스크롤 방식에서 가상의 박스를 만들어 그 박스가 인터페이스에 나타나게 로딩하는 방식으로 변경
+    // // 초기 이벤트 1페이지 목록 가져오기
+    // useEffect(() => {
+    //     loadEvents();
+    // }, []);
+
+    // // 스크롤 이벤트 핸들러
+    // const scrollHandler =throttle(() => {
+    //
+    //     if(loading ||
+    //         window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight
+    //     ) {
+    //         return;
+    //     }
+    //
+    //     loadEvents();
+    // }, 2000);
+
+
+    // // 스크롤 이벤트 바인딩
+    // useEffect(() => {
+    //     window.addEventListener('scroll', scrollHandler);
+    //
+    //     return () => {
+    //         window.removeEventListener('scroll', scrollHandler);
+    //         scrollHandler.cancel(); // 스크롤 취소
+    //     }
+    // }, [currentPage, loading]);
+
+    // 화면에 특정 박스가 보이면 다음 페이지를 로딩
     useEffect(() => {
-        loadEvents();
-    }, []);
 
-    // 스크롤 이벤트 핸들러
-    const scrollHandler =throttle(() => {
+        const observer = new IntersectionObserver((entries) => {
 
-        if(loading ||
-            window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight
-        ) {
-            return;
+            // 현재 감시하고 있는 타겟의 정보 (배열) === 매개변수
+            // console.log('entries', entries[0]);
+
+            // 서버에서 데이터 페칭
+            // !entries[0].isIntersecting 감지가 되지 않으면 가져오지 말아라
+            if(!entries[0].isIntersecting || loading || isFinish) {
+                return;
+
+            }
+
+            loadEvents();
+
+        }, {
+            // 관찰하고 있는 요소의 높이가 50% 보일때 콜백을 실행
+            threshold: 0.5
+        });
+
+        // observer 관찰 대상(DOM)을 지정
+        if(skeletonBoxRef.current) {
+            observer.observe(skeletonBoxRef.current);
         }
 
-        loadEvents();
-    }, 2000);
-
-
-    // 스크롤 이벤트 바인딩
-    useEffect(() => {
-        window.addEventListener('scroll', scrollHandler);
-
+        // 컴포넌트가 렌더링이 사라질 때 옵저빙 중지
         return () => {
-            window.removeEventListener('scroll', scrollHandler);
-            scrollHandler.cancel(); // 스크롤 취소
-        }
-    }, [currentPage, loading]);
+            if(skeletonBoxRef.current) {
+                observer.disconnect();
+            }
+        };
 
-
+    }, [loading, currentPage])
 
     return (
     <>
         <EventList eventList={events} />
-        {loading && <EventSkeleton count={skeletonCount} />}
+        <div ref={skeletonBoxRef}>
+            {loading && <EventSkeleton count={skeletonCount} />}
+        </div>
     </>
   );
 };
