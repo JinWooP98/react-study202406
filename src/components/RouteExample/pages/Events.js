@@ -3,7 +3,7 @@ import EventList from "../components/EventList";
 import EventSkeleton from "../components/EventSkeleton";
 
 // npm install loadsh
-import {debounce, throttle} from "lodash";
+// import {debounce, throttle} from "lodash";
 
 
 const Events = () => {
